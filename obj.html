@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Object</title>
+</head>
+<body>
+	<div style="width: 450px; float: left;">
+		<fieldset>
+
+			<legend>Falsetto Library</legend>
+			<table style="width: 100px";>
+			<tbody>
+				<tr>
+					<td>Title:</td>
+					<td><input type="text" name="" id="bt" placeholder="Enter the Title of the book" ></td>
+				</tr>
+				<tr>
+				<td>Author:</td>
+				<td><input type="text" name="" id="ba" placeholder="Enter the name of the author"></td>
+			</tr>
+			<tr>
+	         <td>Page:</td>
+	         <td><input type="text" name="" id="pg" placeholder="Enter the number of pages"></td>
+	         </tr>
+	         <tr>
+	           <td><button onclick="gt()">AddtoLibrary</button></td>
+	           <td><button onclick="display()">Display Books</button></td>
+				</tr></tbody>
+			</table>
+	  </fieldset></div>
+<center>
+	<div >
+		<table id="jk" border="1">
+			<tr>
+				<th style="width: 250px">Title</th>
+				<th style="width: 250px">Author</th>
+				<th style="width: 250px">Page</th>
+			</tr>
+		</table>
+	</div>
+</center>
+	<script type="text/javascript">
+		bt.focus();
+		function gt(){
+			if (bt.value=="" || ba.value=="" || pg.value=="") {
+				alert("Please fill in the neccessary fields")
+			}
+			 else {
+				bt.focus();
+			var lib= JSON.parse(localStorage.mybooks);
+			var obj={Title:bt.value, Author:ba.value, Page:pg.value};
+			lib.push(obj);
+			localStorage.mybooks=JSON.stringify(lib)
+			console.log(lib);
+			var relib= JSON.parse(localStorage.mybooks);
+			console.log(relib);
+			bt.value="";
+			ba.value="";
+			pg.value="";
+			}
+			
+		}
+		function display(){
+			var jh='';
+			var relib= JSON.parse(localStorage.mybooks);
+
+			for (var i = 0; i < relib.length; i++) {
+				var y;
+				y= '<td>'  +relib[i].Title+ '</td>'  +'<td>'  +relib[i].Author+'</td>'+ '<td>' +relib[i].Page+ '</td>'; 
+				jk.innerHTML+=  y;
+			}
+		
+		}
+	</script>
+
+
+</body>
+<style type="text/css">
+body{
+	background-color: #578494;
+}
+*{
+	font-family: segeo UI
+	padding:0;
+	margin: 0px;
+}
+fieldset{
+	margin: 10px;
+	padding: 15px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+
+
+
+}
+table input{
+	width:200px;
+	height: 30px;
+	border-radius: 4px;
+	padding: 5px;
+}
+	table{
+		
+		color: black;
+		border-radius: 10%;
+		border: none solid red;
+		width: 700px;
+		height: 30px;
+		border-collapse: collapse;
+	}
+	table tr{
+		border-bottom: 1px solid #ccc;
+
+	}
+	table:lastChild(){
+		border-bottom: none;
+	}
+
+	table button{
+		padding: 5px 15px 5px  15px;
+		width:auto;
+		margin: 3px;
+		height:35px
+		border:1px solid #ccc;
+		border-radius:4px;
+	}
+
+		
+</style>
+</html>
